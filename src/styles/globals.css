@@ -1,0 +1,127 @@
+/* Import Bootstrap */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css");
+@import url("bootstrap-icons/font/bootstrap-icons.css");
+
+/* Your existing styles */
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.custom-card {
+  width: 40em;
+  min-width: 250px;
+  padding: 20px 12px;
+  border: 1px solid #cce7d0;
+  border-radius: 25px;
+  cursor: pointer;
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
+  /* margin: 10px; */
+  transition: 0.2s ease;
+  position: relative;
+}
+
+.custom-card:hover {
+  box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.1);
+}
+
+.align-items-stretch {
+  margin-bottom: 30px;
+  height: 100%;
+}
+
+/* NEWSLETTER */
+#newsletter {
+  /* background-image: url(img/banner/b14.png); */
+  height: 30vh;
+  width: 100%;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: 20% 30%;
+  background-color: #041e42;
+}
+
+#newsletter h4 {
+  font-size: 22px;
+  font-weight: 700;
+  color: #fff;
+}
+
+#newsletter p {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+#newsletter p span {
+  color: #ffbd27;
+}
+
+#newsletter input {
+  height: 3.125rem;
+  padding: 0 1.25em;
+  font-size: 14px;
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  outline: none;
+}
+
+#newsletter button {
+  background-color: rgba(218, 153, 32, 0.877);
+  color: #fff;
+  white-space: nowrap;
+  margin-top: 10px;
+  border-radius: 3px;
+}
+
+/* FOOTER */
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.section-p1 {
+  padding: 40px 0;
+  background: #f8f8f8;
+}
+
+.col {
+  flex: 1;
+  padding: 20px;
+}
+
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.follow .icon i {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.install .row img {
+  width: 100px;
+  margin-right: 10px;
+}
+
+/* .copyright {
+  text-align: center;
+  padding: 20px 0;
+  background: #333;
+  color: #fff;
+} */
