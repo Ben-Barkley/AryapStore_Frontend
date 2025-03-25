@@ -36,24 +36,6 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   };
 
-  // const updateQuantity = async (id, quantity) => {
-  //   try {
-  //     console.log("Updating quantity:", { id, quantity }); // Log the request for debugging
-
-  //     //call the backend Api
-  //     await apiAddToCart(id, quantity);
-
-  //     //update the local state
-  //     setCart((prevCart) =>
-  //       prevCart.map((item) =>
-  //         item.id === id ? { ...item, quantity: Math.max(1, quantity) } : item
-  //       )
-  //     );
-  //   } catch (error) {
-  //     console.error("Failed to update quantity:", error);
-  //   }
-  // };
-
   const updateQuantity = (clothId, newQuantity) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -63,9 +45,16 @@ export const CartProvider = ({ children }) => {
       )
     );
   };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQuantity }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQuantity,
+        setCart,
+      }}
     >
       {children}
     </CartContext.Provider>

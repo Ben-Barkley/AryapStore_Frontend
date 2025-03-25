@@ -12,7 +12,6 @@ export default function ProductCard({ product, showDiscount }) {
     router.push(`/product/${product.clothId}`);
   };
 
-  console.log("check product:", product);
   return (
     <div
       className="card h-100"

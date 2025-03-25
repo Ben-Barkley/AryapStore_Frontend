@@ -1,12 +1,38 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "react-toastify";
 import { Form, InputGroup, Button } from "react-bootstrap";
 import { FlagFill } from "react-bootstrap-icons";
+import { useRouter } from "next/router";
 
 const CreateAccount = () => {
   const [profileImage, setProfileImage] = useState(null);
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "Post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password, email }),
+      });
+
+      if (response.ok) {
+        toast.success("Account created successfully!");
+        router.push("/login"); //Redirect to login page
+      } else {
+        toast.error("Failed to create account");
+      }
+    } catch (error) {
+      toast.error("An error occurred");
+    }
+  };
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];
@@ -35,7 +61,7 @@ const CreateAccount = () => {
           src="/bubble 01.png"
           alt="bubble"
           width={120}
-          height={120}
+          height={80}
           className="position-absolute"
           style={{ top: "10px", right: "-10px", opacity: 0.5 }}
         />
@@ -44,7 +70,7 @@ const CreateAccount = () => {
         <h2 className="fw-bold text-start">Create Account</h2>
 
         {/* Profile Image Upload */}
-        <label className="upload-btn mt-3 d-flex justify-content-center">
+        {/* <label className="upload-btn mt-3 d-flex justify-content-center">
           <input
             type="file"
             accept="image/*"
@@ -64,16 +90,38 @@ const CreateAccount = () => {
               <div className="camera-icon">📷</div>
             )}
           </div>
-        </label>
+        </label> */}
 
         {/* Form Inputs */}
-        <input type="email" placeholder="Email" className="form-control mt-3" />
+
+        {/* Username Input */}
+        <input
+          type="text"
+          placeholder="Username"
+          className="form-control mt-3"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+
+        {/* Email Input */}
+        <input
+          type="email"
+          placeholder="Email"
+          className="form-control mt-3"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
         <div className="input-group mt-3">
           <input
             type={passwordVisible ? "text" : "password"}
             placeholder="Password"
             className="form-control"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
           />
           <button
             className="btn btn-outline-secondary"
@@ -84,24 +132,14 @@ const CreateAccount = () => {
           </button>
         </div>
 
-        <div className="input-group mt-3">
-          <select className="form-select" style={{ maxWidth: "100px" }}>
-            <option value="+44">🇬🇧 +44</option>
-            <option value="+1">🇺🇸 +1</option>
-            <option value="+91">🇮🇳 +91</option>
-            <option value="+61">🇦🇺 +61</option>
-            <option value="+81">🇯🇵 +81</option>
-            {/* Add more country codes as needed */}
-          </select>
-          <input
-            type="text"
-            placeholder="Your number"
-            className="form-control"
-          />
-        </div>
-
         {/* Buttons */}
-        <button className="btn btn-primary w-100 mt-4">Done</button>
+        <button
+          className="btn btn-primary w-100 mt-4"
+          type="submit"
+          onClick={handleSubmit}
+        >
+          Done
+        </button>
         <Link
           href="/"
           className="text-muted mt-2"

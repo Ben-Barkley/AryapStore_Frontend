@@ -50,53 +50,14 @@ const Home = ({ clothes }) => {
 
   return (
     <>
-      <Head>
-        <title>Dav_Milan Store</title>
-        <meta name="description" content="Welcome to Dav_Milan Store" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       {/* Screen Flow */}
       {screen === "start" && <StartScreen onNext={handleNext} />}
-      {screen === "createAccount" && <CreateAccount onNext={handleNext} />}
       {screen === "login" && <Login onNext={handleNext} />}
-      {screen === "login" && <ThriftRandomizer onNext={handleNext} />}
+      {screen === "createAccount" && <CreateAccount onNext={handleNext} />}
       {screen === "welcome" && <WelcomeScreen onNext={handleNext} />}
 
       {screen === "home" && (
         <>
-          {/* Header */}
-          <Header />
-          {/* Hero Section */}
-          <Hero />
-          {/* Featured Products */}
-          <section id="product1" className="section-p1">
-            <h2>Featured Products</h2>
-            <p>Summer Collection - New Modern Design</p>
-            <ProductList clothes={clothes} />
-          </section>
-          {/* Banner Section */}
-          <section id="banner" className="section-m1">
-            <div className="banner-box">
-              <h4>Repair Services</h4>
-              <h2>Up to 15% Off</h2>
-              <span>All T-Shirts & Accessories</span>
-              <button>Explore More</button>
-            </div>
-          </section>
-          {/* Newsletter Section */}
-          <section id="newsletter" className="section-p1 section-m1">
-            <div className="newstext">
-              <h4>Sign Up For Newsletters</h4>
-              <p>
-                Get E-mail updates about our latest shop and special offers.
-              </p>
-            </div>
-            <form>
-              <input type="text" placeholder="Your email address" />
-              <button type="submit">Sign Up</button>
-            </form>
-          </section>
           {/* Footer */}
           <Footer />
         </>

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import HeroCarousel from "../components/HeroCarousel";
 import ProductCard from "../components/ProductCard";
 import { Container, Row, Col } from "react-bootstrap";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -27,41 +28,39 @@ export default function Home() {
   }, []);
 
   return (
-    <div>
-      <HeroCarousel />
-      <Container>
-        <h2>Flash Sale</h2>
-        <Row>
-          {products.slice(0, 4).map(
-            (product) => (
-              console.log(product),
-              (
-                <Col key={product.clothId} md={3} className="mb-4">
-                  <ProductCard product={product} showDiscount={true} />
-                </Col>
-              )
-            )
-          )}
-        </Row>
+    <ProtectedRoute>
+      <div>
+        <HeroCarousel />
+        <Container>
+          <h2>Flash Sale</h2>
+          <Row>
+            {products.slice(0, 4).map((product) => (
+              // console.log(product),
+              <Col key={product.clothId} md={3} className="mb-4">
+                <ProductCard product={product} showDiscount={true} />
+              </Col>
+            ))}
+          </Row>
 
-        <h2>Top Products</h2>
-        <Row>
-          {topProducts.slice(0, 4).map((product) => (
-            <Col key={product.clothId} md={3} className="mb-4">
-              <ProductCard product={product} />
-            </Col>
-          ))}
-        </Row>
+          <h2>Top Products</h2>
+          <Row>
+            {topProducts.slice(0, 4).map((product) => (
+              <Col key={product.clothId} md={3} className="mb-4">
+                <ProductCard product={product} />
+              </Col>
+            ))}
+          </Row>
 
-        <h2>Just For You</h2>
-        <Row>
-          {justForYou.slice(0, 4).map((product) => (
-            <Col key={product.clothId} md={3} className="mb-4">
-              <ProductCard product={product} />
-            </Col>
-          ))}
-        </Row>
-      </Container>
-    </div>
+          <h2>Just For You</h2>
+          <Row>
+            {justForYou.slice(0, 4).map((product) => (
+              <Col key={product.clothId} md={3} className="mb-4">
+                <ProductCard product={product} />
+              </Col>
+            ))}
+          </Row>
+        </Container>
+      </div>
+    </ProtectedRoute>
   );
 }

@@ -4,6 +4,8 @@ import { CartProvider } from "../context/CartContext";
 import { AuthProvider } from "../context/AuthContext";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
@@ -16,6 +18,7 @@ function MyApp({ Component, pageProps }) {
     "/login",
     "/checkout",
     "/create-account",
+    "/",
   ];
 
   // Check if the current page is in the noNavbarPages list
@@ -27,6 +30,7 @@ function MyApp({ Component, pageProps }) {
         {showNavbar && <NavbarComponent />}
         <Component {...pageProps} />
       </CartProvider>
+      <ToastContainer />
     </AuthProvider>
   );
 }

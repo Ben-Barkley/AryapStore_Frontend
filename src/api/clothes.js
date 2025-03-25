@@ -36,14 +36,15 @@ export const addToCart = async (id, quantity) => {
 
 //This function sends the cart items to the backend for stock reduction and order processing
 export const apiCheckout = async (cartItems) => {
+  console.log("Sending request to API:", cartItems);
   try {
-    const response = await fetch(`/api/clothes/checkout`, {
+    const response = await fetch("http://localhost:5000/api/clothes/checkout", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         // UserId: userId,
         Items: cartItems.map((item) => ({
-          Id: item.clothId,
+          ClothId: item.clothId,
           Quantity: item.quantity,
         })),
       }),

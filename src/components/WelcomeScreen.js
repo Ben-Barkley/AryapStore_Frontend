@@ -1,19 +1,20 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useAuth } from "../context/AuthContext";
 
 const WelcomeScreen = () => {
   const router = useRouter();
+  const { hasSeenWelcome, markWelcomePageAsSeen } = useAuth();
 
   useEffect(() => {
-    const hasSeenWelcome = localStorage.getItem("hasSeenWelcome");
     if (hasSeenWelcome) {
       router.replace("/main"); // Redirect to main page
     }
-  }, [router]);
+  }, [hasSeenWelcome, router]);
 
   const handleGetStarted = () => {
-    localStorage.setItem("hasSeenWelcome", "true");
+    markWelcomePageAsSeen(); // Mark the welcome screen as seen
     router.replace("/main");
   };
 
@@ -51,22 +52,6 @@ const WelcomeScreen = () => {
           >
             Lets Start
           </button>
-
-          {/* Pagination Dots */}
-          {/* <div className="mt-4 d-flex justify-content-center">
-            <span
-              className="dot bg-secondary rounded-circle mx-1"
-              style={{ width: "10px", height: "10px" }}
-            ></span>
-            <span
-              className="dot bg-secondary rounded-circle mx-1"
-              style={{ width: "10px", height: "10px" }}
-            ></span>
-            <span
-              className="dot bg-primary rounded-circle mx-1"
-              style={{ width: "10px", height: "10px" }}
-            ></span>
-          </div> */}
         </div>
       </div>
     </div>
